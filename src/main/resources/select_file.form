@@ -1,0 +1,19 @@
+{
+  "components": [
+    {
+      "label": "File",
+      "type": "textfield",
+      "id": "Field_1d21h4c",
+      "key": "field_1c9tva8"
+    }
+  ],
+  "type": "default",
+  "id": "select_file",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}
