@@ -46,3 +46,13 @@ mvn test
 ```
 mvn site
 ```
+
+### statische Codeanalyse
+
+Für die statische Codeanalyse kann [pmd](https://pmd.github.io/) verwendet werden. Ein grundlegendes Ruleset ist in `./ruleset/java/jpinpoint-rules.xml` abgelegt. Sofern pmd installiert ist, kann der Check mit
+
+```cmd
+pmd check -R .\rulesets\java\* -d .\src\ -r .\check.txt
+```
+
+gestartet werden.
