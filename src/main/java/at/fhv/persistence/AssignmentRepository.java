@@ -1,9 +1,18 @@
 package at.fhv.persistence;
 
-import org.springframework.data.repository.CrudRepository;
+import at.fhv.domain.models.Assignment;
+import at.fhv.domain.persistence.IAssignmentRepository;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import at.fhv.models.Assignment;
+public class AssignmentRepository implements IAssignmentRepository {
 
-public interface AssignmentRepository extends CrudRepository<Assignment, Integer> {
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Override
+    public void add(Assignment assignment) {
+        entityManager.persist(assignment);
+    }
     
 }

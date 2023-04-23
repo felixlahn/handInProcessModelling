@@ -1,4 +1,4 @@
-package at.fhv.models;
+package at.fhv.domain.models;
 
 import java.sql.Date;
 

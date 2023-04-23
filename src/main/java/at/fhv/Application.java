@@ -1,5 +1,6 @@
 package at.fhv;
 
+
 import javax.annotation.PostConstruct;
 
 import org.apache.catalina.webresources.TomcatURLStreamHandlerFactory;
@@ -15,9 +16,9 @@ import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 
 @SpringBootApplication
 @EnableProcessApplication
-@ComponentScan(basePackages={"at.fhv"}) 
-@EntityScan(basePackages={"at.fhv.models"}) 
-@EnableJpaRepositories(basePackages={"at.fhv.persistence"}) 
+// @ComponentScan(basePackages={"at.fhv"}) 
+// @EntityScan(basePackages={"at.fhv.models"}) 
+// @EnableJpaRepositories(basePackages={"at.fhv.persistence"}) 
 public class Application {
 
   public static void main(String... args) {
