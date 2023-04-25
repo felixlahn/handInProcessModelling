@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0vse0rp" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="Process_0qvnr5p" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="homework ready for hand in">
+      <bpmn:outgoing>Flow_1niuvhx</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1niuvhx" sourceRef="StartEvent_1" targetRef="Activity_16qtwvc" />
+    <bpmn:task id="Activity_0ps49to" name="check max. filesize">
+      <bpmn:incoming>Flow_1fd46gf</bpmn:incoming>
+      <bpmn:outgoing>Flow_01g26ey</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1fd46gf" sourceRef="Activity_16qtwvc" targetRef="Activity_0ps49to" />
+    <bpmn:task id="Activity_0e55s03" name="store files in filesystem">
+      <bpmn:incoming>Flow_01g26ey</bpmn:incoming>
+      <bpmn:outgoing>Flow_022xy8s</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_01g26ey" sourceRef="Activity_0ps49to" targetRef="Activity_0e55s03" />
+    <bpmn:task id="Activity_0v8gjnu" name="assign grading">
+      <bpmn:incoming>Flow_022xy8s</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bqrc9e</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_022xy8s" sourceRef="Activity_0e55s03" targetRef="Activity_0v8gjnu" />
+    <bpmn:endEvent id="Event_0uonqjn">
+      <bpmn:incoming>Flow_0bqrc9e</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0bqrc9e" sourceRef="Activity_0v8gjnu" targetRef="Event_0uonqjn" />
+    <bpmn:userTask id="Activity_16qtwvc" name="select files for hand in" camunda:formRef="select_file" camunda:formRefBinding="latest">
+      <bpmn:incoming>Flow_1niuvhx</bpmn:incoming>
+      <bpmn:outgoing>Flow_1fd46gf</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_0qvnr5p">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="142" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e55s03_di" bpmnElement="Activity_0e55s03">
+        <dc:Bounds x="1280" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0v8gjnu_di" bpmnElement="Activity_0v8gjnu">
+        <dc:Bounds x="1550" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0uonqjn_di" bpmnElement="Event_0uonqjn">
+        <dc:Bounds x="1782" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0axsi8d_di" bpmnElement="Activity_16qtwvc">
+        <dc:Bounds x="410" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ps49to_di" bpmnElement="Activity_0ps49to">
+        <dc:Bounds x="760" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1niuvhx_di" bpmnElement="Flow_1niuvhx">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="410" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1fd46gf_di" bpmnElement="Flow_1fd46gf">
+        <di:waypoint x="510" y="117" />
+        <di:waypoint x="760" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01g26ey_di" bpmnElement="Flow_01g26ey">
+        <di:waypoint x="860" y="117" />
+        <di:waypoint x="1280" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_022xy8s_di" bpmnElement="Flow_022xy8s">
+        <di:waypoint x="1380" y="117" />
+        <di:waypoint x="1550" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bqrc9e_di" bpmnElement="Flow_0bqrc9e">
+        <di:waypoint x="1650" y="117" />
+        <di:waypoint x="1782" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
