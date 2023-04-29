@@ -1,8 +1,11 @@
 package at.fhv.domain.models;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +21,7 @@ public class Student {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<StudentAssignment> assignments;
 
     public Student(String name) {
@@ -49,5 +52,18 @@ public class Student {
                 return;
             }
         }
+    }
+
+    public List<StudentAssignment> getAssignments() {
+        return assignments;
+    }
+
+    public List<Assignment> notYetHandedIntAssingments(Date today, long dueUntilDays) {
+        return assignments.stream()
+            .filter(
+                assignment -> !assignment.isHandedIn()
+                && 0 < assignment.getAssignment().dueUntil().toLocalDate().compareTo(today.toLocalDate().plusDays(dueUntilDays)))
+            .map(StudentAssignment::getAssignment)
+            .collect(Collectors.toList());
     }
 }

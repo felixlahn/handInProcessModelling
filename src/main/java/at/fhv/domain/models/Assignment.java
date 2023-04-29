@@ -19,8 +19,9 @@ public class Assignment {
 
     private Date dueUnitl;
 
-    public Assignment(Date dueUnit) {
+    public Assignment(String name, Date dueUnit) {
         this.dueUnitl = dueUnit;
+        this.assignmentName = name;
     }
 
     public Date dueUntil() {

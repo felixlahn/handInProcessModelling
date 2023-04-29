@@ -1,0 +1,20 @@
+{
+  "components": [
+    {
+      "label": "Pfad zur Datei",
+      "type": "textfield",
+      "id": "Field_0xjperd",
+      "key": "submissionFilePath",
+      "defaultValue": "./submission.pdf"
+    }
+  ],
+  "type": "default",
+  "id": "FilePathSelectForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}

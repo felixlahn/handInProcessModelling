@@ -1,0 +1,21 @@
+{
+  "components": [
+    {
+      "label": "Name des Studenten",
+      "type": "textfield",
+      "id": "Field_1umonmn",
+      "key": "studentName",
+      "description": "Name",
+      "disabled": false
+    }
+  ],
+  "type": "default",
+  "id": "createStudentForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}
