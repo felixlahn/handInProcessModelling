@@ -3,5 +3,6 @@ package at.fhv.domain.persistence;
 import at.fhv.domain.models.Assignment;
 
 public interface IAssignmentRepository {
-    public void add(Assignment assignment);
+    void add(Assignment assignment);
+    Assignment get(String assignmentName);
 }

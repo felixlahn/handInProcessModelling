@@ -1,0 +1,63 @@
+{
+  "components": [
+    {
+      "label": "Assignment Name",
+      "type": "textfield",
+      "id": "Field_18tmgy8",
+      "key": "assignmentName"
+    },
+    {
+      "label": "Assignment zugeordnet zu Studenten",
+      "type": "textfield",
+      "id": "Field_1aihkgb",
+      "key": "assignmentAssignedToStudent"
+    },
+    {
+      "text": "Datum",
+      "type": "text",
+      "id": "Field_0h77zoo"
+    },
+    {
+      "label": "Jahr",
+      "type": "number",
+      "id": "Field_07grbhe",
+      "key": "assignmentDueYear",
+      "defaultValue": 2023,
+      "validate": {
+        "min": 1970,
+        "max": 2070
+      }
+    },
+    {
+      "label": "Monat",
+      "type": "number",
+      "id": "Field_1w7vwx3",
+      "key": "assignmentDueMonth",
+      "defaultValue": 4,
+      "validate": {
+        "min": 1,
+        "max": 12
+      }
+    },
+    {
+      "label": "Tag",
+      "type": "number",
+      "id": "Field_107cinu",
+      "key": "assignmentDueDay",
+      "defaultValue": 1,
+      "validate": {
+        "min": 1,
+        "max": 32
+      }
+    }
+  ],
+  "type": "default",
+  "id": "createAssignmentForm",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}

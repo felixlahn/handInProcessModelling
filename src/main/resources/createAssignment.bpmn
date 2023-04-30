@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1dc2jit" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="assignAssignment" name="Assign Assignment Student" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_01lt20p</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1dd0i4t">
+      <bpmn:incoming>Flow_16gf4t2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_16gf4t2" sourceRef="persistAssignment" targetRef="Event_1dd0i4t" />
+    <bpmn:userTask id="AssNameDuedate" name="Put in Assignment Name &#38; DueDate" camunda:formRef="createAssignmentForm" camunda:formRefBinding="latest">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="assignmentName">${assignmentName}</camunda:outputParameter>
+          <camunda:outputParameter name="assignmentDueYear">${assignmentDueYear}</camunda:outputParameter>
+          <camunda:outputParameter name="assignmentAssignedToStudent">${assignmentAssignedToStudent}</camunda:outputParameter>
+          <camunda:outputParameter name="assignmentDueMonth">${assignmentDueMonth}</camunda:outputParameter>
+          <camunda:outputParameter name="assignmentDueDay">${assignmentDueDay}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01lt20p</bpmn:incoming>
+      <bpmn:outgoing>Flow_04iifvn</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_01lt20p" sourceRef="StartEvent_1" targetRef="AssNameDuedate" />
+    <bpmn:sequenceFlow id="Flow_04iifvn" sourceRef="AssNameDuedate" targetRef="persistAssignment" />
+    <bpmn:serviceTask id="persistAssignment" name="persist Assignment" camunda:class="at.fhv.serviceTasks.PersistNewAssignmentTask">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="assignmentAssignedToStudent">${assignmentAssignedToStudent}</camunda:inputParameter>
+          <camunda:inputParameter name="assingmentName">${assignmentName}</camunda:inputParameter>
+          <camunda:inputParameter name="assignmentDueYear">${assignmentDueYear}</camunda:inputParameter>
+          <camunda:inputParameter name="assignmentDueMonth">${assignmentDueMonth}</camunda:inputParameter>
+          <camunda:inputParameter name="assignmentDueDay">${assignmentDueDay}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_04iifvn</bpmn:incoming>
+      <bpmn:outgoing>Flow_16gf4t2</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="assignAssignment">
+      <bpmndi:BPMNShape id="Activity_0glmnog_di" bpmnElement="AssNameDuedate">
+        <dc:Bounds x="290" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0352oxk_di" bpmnElement="persistAssignment">
+        <dc:Bounds x="530" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1dd0i4t_di" bpmnElement="Event_1dd0i4t">
+        <dc:Bounds x="732" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_01lt20p_di" bpmnElement="Flow_01lt20p">
+        <di:waypoint x="188" y="117" />
+        <di:waypoint x="290" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04iifvn_di" bpmnElement="Flow_04iifvn">
+        <di:waypoint x="390" y="117" />
+        <di:waypoint x="530" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16gf4t2_di" bpmnElement="Flow_16gf4t2">
+        <di:waypoint x="630" y="117" />
+        <di:waypoint x="732" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -24,6 +24,8 @@ public class Student {
     @OneToMany(cascade = {CascadeType.ALL})
     private List<StudentAssignment> assignments;
 
+    private Student() {}
+
     public Student(String name) {
         this.name = name;
         assignments = new ArrayList<>();
