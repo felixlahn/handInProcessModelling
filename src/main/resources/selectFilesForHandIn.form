@@ -4,8 +4,14 @@
       "label": "Pfad zur Datei",
       "type": "textfield",
       "id": "Field_0xjperd",
-      "key": "submissionFilePath",
+      "key": "filePath",
       "defaultValue": "./submission.pdf"
+    },
+    {
+      "label": "Aufgabenname",
+      "type": "textfield",
+      "id": "Field_1vnw8go",
+      "key": "submissionName"
     }
   ],
   "type": "default",
