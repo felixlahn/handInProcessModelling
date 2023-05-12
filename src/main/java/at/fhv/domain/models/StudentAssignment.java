@@ -1,9 +1,12 @@
 package at.fhv.domain.models;
 
+import java.io.File;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,10 +21,23 @@ public class StudentAssignment {
     private boolean handedIn;
     private Grade grade;
 
+    @Lob
+    private File submission;
+
+    private StudentAssignment() { }
+
     public StudentAssignment(Assignment assignment) {
         this.assignment = assignment;
         handedIn = false;
         grade = Grade.NOT_GRADED_YET;
+    }
+
+    public File getSubmission() {
+        return this.submission;
+    }
+
+    public void setSubmission(File submission) {
+        this.submission = submission;
     }
 
     public Grade getGrade() {
@@ -36,8 +52,10 @@ public class StudentAssignment {
         return this.handedIn;
     }
 
-    public void hasBeenHandedIn() {
+    public void hasBeenHandedIn(File submission) {
         this.handedIn = true;
+        this.submission = submission;
+        System.out.println("handed in");
     }
 
     public void excellent() {

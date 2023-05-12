@@ -5,13 +5,19 @@
       "type": "textfield",
       "id": "Field_0xjperd",
       "key": "filePath",
-      "defaultValue": "./submission.pdf"
+      "defaultValue": "C:\\Users\\felix\\Downloads\\Bericht_20230507_195547.pdf"
     },
     {
       "label": "Aufgabenname",
       "type": "textfield",
       "id": "Field_1vnw8go",
       "key": "submissionName"
+    },
+    {
+      "label": "Student Name",
+      "type": "textfield",
+      "id": "Field_0u8ekie",
+      "key": "studentName"
     }
   ],
   "type": "default",

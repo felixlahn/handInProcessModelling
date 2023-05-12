@@ -1,5 +1,7 @@
 package at.fhv.serviceTasks;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -11,7 +13,16 @@ public class CheckFileSize implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        execution.setVariable("fileSize", 2000);
+        File submission = new File(execution.getVariable("filePath").toString());
+
+        if(!submission.exists()) throw new FileNotFoundException(execution.getVariable("filePath").toString());
+
+        long fileSizeBytes = submission.length();
+
+        if(fileSizeBytes > 1.024e+9) throw new Exception("file too large");
+
+        execution.setVariable("fileSize", fileSizeBytes);
+        
         LOGGER.info("checkfilesize:");
         LOGGER.info("submissionName: " + execution.getVariable("submissionName"));
         LOGGER.info("filePath: " + execution.getVariable("filePath"));

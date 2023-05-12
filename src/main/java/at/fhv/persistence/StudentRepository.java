@@ -36,4 +36,9 @@ public class StudentRepository implements IStudentRepository {
 
         return result.get(0);
     }
+
+    @Override
+    public void merge(Student student) {
+        entityManager.merge(student);
+    }
 }

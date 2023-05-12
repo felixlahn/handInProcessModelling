@@ -8,4 +8,5 @@ public interface IStudentRepository {
     void add(Student student);
     List<Student> getAll();
     Student get(String name);
+    void merge(Student student);
 }

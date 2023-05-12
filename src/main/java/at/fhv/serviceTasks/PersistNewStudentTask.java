@@ -17,7 +17,6 @@ public class PersistNewStudentTask implements JavaDelegate {
 
     private final static Logger LOGGER = Logger.getLogger("PersistNewStudentTask");
 
-
     @Autowired
     private IStudentRepository _studentRepository;
 

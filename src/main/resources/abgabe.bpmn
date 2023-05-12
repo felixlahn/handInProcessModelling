@@ -9,6 +9,7 @@
         <camunda:inputOutput>
           <camunda:outputParameter name="filePath">${filePath}</camunda:outputParameter>
           <camunda:outputParameter name="submissionName">${submissionName}</camunda:outputParameter>
+          <camunda:outputParameter name="studentName">${studentName}</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_00kilwr</bpmn:incoming>
@@ -36,10 +37,10 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1so37qy" sourceRef="checkSizeTask" targetRef="filesizeGateway" />
     <bpmn:sequenceFlow id="Flow_0a1gb85" sourceRef="filesizeGateway" targetRef="selectToUploadTask">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fileSize&gt;1024}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fileSize&gt;1.024e+9}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0mjmvkh" sourceRef="filesizeGateway" targetRef="compareSumissionDateTask">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fileSize&lt;1024}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${fileSize&lt;1.024e+9}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="compareSumissionDateTask" name="compare submission date with deadline date" camunda:class="at.fhv.serviceTasks.TodayBeforeSubmissiondate">
       <bpmn:extensionElements>
@@ -63,13 +64,24 @@
     <bpmn:sequenceFlow id="Flow_1ln9y3h" sourceRef="dueDateCompareGateway" targetRef="Event_1g00w4r">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${submissionToLate==true}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0az01pw" sourceRef="dueDateCompareGateway" targetRef="informTeacherevent">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${submissionToLate==false}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:endEvent id="informTeacherevent" name="Inform Teacher">
-      <bpmn:incoming>Flow_0az01pw</bpmn:incoming>
+      <bpmn:incoming>Flow_05aeero</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0hmyhym" camunda:class="at.fhv.serviceTasks.InformTeacherTask" />
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0az01pw" sourceRef="dueDateCompareGateway" targetRef="Activity_1297pzj">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${submissionToLate==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_05aeero" sourceRef="Activity_1297pzj" targetRef="informTeacherevent" />
+    <bpmn:serviceTask id="Activity_1297pzj" name="persist assignment" camunda:class="at.fhv.serviceTasks.PersistSubmission">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="filePath">${filePath}</camunda:inputParameter>
+          <camunda:inputParameter name="studentName">${studentName}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0az01pw</bpmn:incoming>
+      <bpmn:outgoing>Flow_05aeero</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="abgabeProcess">
@@ -94,17 +106,20 @@
       <bpmndi:BPMNShape id="Gateway_05i648i_di" bpmnElement="dueDateCompareGateway" isMarkerVisible="true">
         <dc:Bounds x="1635" y="152" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1622" y="209" width="77" height="40" />
+          <dc:Bounds x="1621" y="212" width="78" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1g00w4r_di" bpmnElement="Event_1g00w4r">
         <dc:Bounds x="1722" y="82" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_07n9n2g_di" bpmnElement="informTeacherevent">
-        <dc:Bounds x="1932" y="159" width="36" height="36" />
+        <dc:Bounds x="2162" y="159" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1913" y="202" width="75" height="14" />
+          <dc:Bounds x="2143" y="202" width="75" height="14" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ar86ew_di" bpmnElement="Activity_1297pzj">
+        <dc:Bounds x="1870" y="137" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_00kilwr_di" bpmnElement="Flow_00kilwr">
         <di:waypoint x="215" y="177" />
@@ -139,7 +154,11 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0az01pw_di" bpmnElement="Flow_0az01pw">
         <di:waypoint x="1685" y="177" />
-        <di:waypoint x="1932" y="177" />
+        <di:waypoint x="1870" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_05aeero_di" bpmnElement="Flow_05aeero">
+        <di:waypoint x="1970" y="177" />
+        <di:waypoint x="2162" y="177" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

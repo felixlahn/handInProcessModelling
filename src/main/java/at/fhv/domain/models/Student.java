@@ -1,5 +1,6 @@
 package at.fhv.domain.models;
 
+import java.io.File;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,10 +48,11 @@ public class Student {
         this.assignments.add(new StudentAssignment(assignment));
     }
 
-    public void hasHandedIn(Assignment assignment) {
+    public void hasHandedIn(Assignment assignment, File submission) {
+        System.out.println("to hand in: " + assignment.getAssignemtName());
         for (StudentAssignment studentAssignment : assignments) {
             if(studentAssignment.getAssignment().getAssignemtName().equals(assignment.getAssignemtName())) {
-                studentAssignment.hasBeenHandedIn();
+                studentAssignment.hasBeenHandedIn(submission);
                 return;
             }
         }
