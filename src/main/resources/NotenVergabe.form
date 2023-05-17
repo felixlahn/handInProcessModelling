@@ -1,0 +1,25 @@
+{
+  "components": [
+    {
+      "label": "studentName",
+      "type": "textarea",
+      "id": "Field_19h3ci8",
+      "key": "field_174m132"
+    },
+    {
+      "label": "finaleGrade",
+      "type": "textarea",
+      "id": "Field_0dozzla",
+      "key": "field_1stw336"
+    }
+  ],
+  "type": "default",
+  "id": "Form_18vcm1v",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.1.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "schemaVersion": 7
+}
