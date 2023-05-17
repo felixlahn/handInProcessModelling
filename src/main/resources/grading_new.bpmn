@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1c2du4e" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
-  <bpmn:collaboration id="Collaboration_0qrpcqx">
+  <bpmn:collaboration id="GradingProcess">
     <bpmn:participant id="Participant_019dnkc" name="GRADING" processRef="Process_1jo1bw8" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1jo1bw8" isExecutable="true">
@@ -76,7 +76,7 @@
     <bpmn:sequenceFlow id="Flow_06rprw7" sourceRef="Event_07omdt6" targetRef="Event_03xwo4d" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0qrpcqx">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GradingProcess">
       <bpmndi:BPMNShape id="Participant_019dnkc_di" bpmnElement="Participant_019dnkc" isHorizontal="true">
         <dc:Bounds x="152" y="80" width="1956" height="650" />
         <bpmndi:BPMNLabel />
