@@ -56,3 +56,14 @@ pmd check -R .\rulesets\java\* -d .\src\ -r .\check.txt
 ```
 
 gestartet werden.
+
+# Todo
+
+- Melek: 1. Cucumber scenario
+- Felix: 2. Cucumber scenario
+- vielleicht fällt einem von uns ein drittes scenario ein
+- pmd reparieren & installieren
+- felix: erinnerungsprozess
+- melek: unit test checkavailability class
+- felix & melek: unit tests & integration tests
+- felix: createstudent form reparieren
