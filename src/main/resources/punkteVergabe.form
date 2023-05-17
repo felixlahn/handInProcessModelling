@@ -1,0 +1,25 @@
+{
+  "components": [
+    {
+      "label": "studentName",
+      "type": "textarea",
+      "id": "Field_0eavoct",
+      "key": "field_140bhrf"
+    },
+    {
+      "label": "Points",
+      "type": "textarea",
+      "id": "Field_0irw2sj",
+      "key": "field_1v72fb9"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1a02fz0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}
