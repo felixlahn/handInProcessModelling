@@ -60,7 +60,7 @@ gestartet werden.
 # Todo
 
 - Melek: 1. Cucumber scenario
-- Felix: 2. Cucumber scenario
+- Felix: 2. Cucumber scenario - done
 - vielleicht fällt einem von uns ein drittes scenario ein
 - pmd reparieren & installieren
 - felix: erinnerungsprozess
