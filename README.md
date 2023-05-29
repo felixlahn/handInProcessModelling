@@ -62,7 +62,7 @@ gestartet werden.
 - Melek: 1. Cucumber scenario
 - Felix: 2. Cucumber scenario - done
 - vielleicht fällt einem von uns ein drittes scenario ein
-- pmd reparieren & installieren
+- pmd reparieren & installieren - done: neue Version von PMD installieren (von rc1 auf rc2)
 - felix: erinnerungsprozess
 - melek: unit test checkavailability class
 - felix & melek: unit tests & integration tests
