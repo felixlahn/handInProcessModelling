@@ -5,7 +5,7 @@
       "type": "textfield",
       "id": "Field_0xjperd",
       "key": "filePath",
-      "defaultValue": "C:\\Users\\felix\\Downloads\\Bericht_20230507_195547.pdf"
+      "defaultValue": "C:\\Users\\felix\\Downloads\\camunda.pdf"
     },
     {
       "label": "Aufgabenname",
