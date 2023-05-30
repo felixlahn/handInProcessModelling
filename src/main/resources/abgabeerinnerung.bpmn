@@ -1,27 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1rokb4h" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
   <bpmn:process id="Process_1jjoq7b" isExecutable="true">
-    <bpmn:serviceTask id="CheckNotHandedInAssingments" name="looking for assignments that haven&#39;t been made yet and should be handed in within the next three days" camunda:class="at.fhv.serviceTasks.CheckNotHandedInAssingments">
-      <bpmn:extensionElements />
+    <bpmn:serviceTask id="CheckNotHandedInAssingments" name="find a student who havent handed in an assignment which is due in two days" camunda:class="at.fhv.serviceTasks.CheckNotHandedInAssingments">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="studentsNeedToBeNotified">${studentsNeedToBeNotified}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_15uw4at</bpmn:incoming>
+      <bpmn:outgoing>Flow_1aum6yf</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_15uw4at" sourceRef="StartLookingForNotHandedInAssignments" targetRef="CheckNotHandedInAssingments" />
+    <bpmn:exclusiveGateway id="Gateway_1wqm137" name="there are students to be notified">
+      <bpmn:incoming>Flow_1aum6yf</bpmn:incoming>
+      <bpmn:outgoing>Flow_091gfor</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1jz59v1</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1aum6yf" sourceRef="CheckNotHandedInAssingments" targetRef="Gateway_1wqm137" />
+    <bpmn:endEvent id="Event_0mn3820">
+      <bpmn:incoming>Flow_091gfor</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_091gfor" sourceRef="Gateway_1wqm137" targetRef="Event_0mn3820">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${studentsNeedToBeNotified==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1jz59v1" sourceRef="Gateway_1wqm137" targetRef="Activity_0ptja83">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${studentsNeedToBeNotified==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="Event_1crv93p">
+      <bpmn:incoming>Flow_16fcd3s</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_16fcd3s" sourceRef="Activity_0ptja83" targetRef="Event_1crv93p" />
+    <bpmn:serviceTask id="Activity_0ptja83" name="notify student" camunda:class="at.fhv.serviceTasks.NotifyStudent">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="studentToBeNotified">${studentToBeNotified}</camunda:inputParameter>
+          <camunda:inputParameter name="assignmentToBeNotifiedAbout">${assignmentToBeNotifiedAbout}</camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1jz59v1</bpmn:incoming>
+      <bpmn:outgoing>Flow_16fcd3s</bpmn:outgoing>
+    </bpmn:serviceTask>
     <bpmn:startEvent id="StartLookingForNotHandedInAssignments">
       <bpmn:outgoing>Flow_15uw4at</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1ordzrq">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT5S</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
     </bpmn:startEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1jjoq7b">
       <bpmndi:BPMNShape id="Activity_08jzya7_di" bpmnElement="CheckNotHandedInAssingments">
-        <dc:Bounds x="380" y="77" width="100" height="80" />
+        <dc:Bounds x="380" y="167" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0050xba_di" bpmnElement="StartLookingForNotHandedInAssignments">
-        <dc:Bounds x="179" y="99" width="36" height="36" />
+      <bpmndi:BPMNShape id="Gateway_1wqm137_di" bpmnElement="Gateway_1wqm137" isMarkerVisible="true">
+        <dc:Bounds x="665" y="182" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="646" y="239" width="89" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0mn3820_di" bpmnElement="Event_0mn3820">
+        <dc:Bounds x="792" y="82" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1crv93p_di" bpmnElement="Event_1crv93p">
+        <dc:Bounds x="1252" y="189" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1qruzbm_di" bpmnElement="Activity_0ptja83">
+        <dc:Bounds x="930" y="167" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1d8noef_di" bpmnElement="StartLookingForNotHandedInAssignments">
+        <dc:Bounds x="179" y="189" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_15uw4at_di" bpmnElement="Flow_15uw4at">
-        <di:waypoint x="215" y="117" />
-        <di:waypoint x="380" y="117" />
+        <di:waypoint x="215" y="207" />
+        <di:waypoint x="380" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1aum6yf_di" bpmnElement="Flow_1aum6yf">
+        <di:waypoint x="480" y="207" />
+        <di:waypoint x="665" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_091gfor_di" bpmnElement="Flow_091gfor">
+        <di:waypoint x="690" y="182" />
+        <di:waypoint x="690" y="100" />
+        <di:waypoint x="792" y="100" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jz59v1_di" bpmnElement="Flow_1jz59v1">
+        <di:waypoint x="715" y="207" />
+        <di:waypoint x="930" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16fcd3s_di" bpmnElement="Flow_16fcd3s">
+        <di:waypoint x="1030" y="207" />
+        <di:waypoint x="1252" y="207" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

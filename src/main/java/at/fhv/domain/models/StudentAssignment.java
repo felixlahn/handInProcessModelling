@@ -19,6 +19,7 @@ public class StudentAssignment {
     @ManyToOne
     private Assignment assignment;
     private boolean handedIn;
+    private boolean lateSubmissionHasBeenNotified;
     private Grade grade;
 
     @Lob
@@ -30,6 +31,7 @@ public class StudentAssignment {
         this.assignment = assignment;
         handedIn = false;
         grade = Grade.NOT_GRADED_YET;
+        lateSubmissionHasBeenNotified = false;
     }
 
     public File getSubmission() {
@@ -76,5 +78,13 @@ public class StudentAssignment {
 
     public void unsatisfactory() {
         this.grade = Grade.UNSATISFACTORY;
+    }
+
+    public void notifyAboutLateSubmission() {
+        lateSubmissionHasBeenNotified = true;
+    }
+
+    public boolean lateSubmissionHasBeenNotified() {
+        return lateSubmissionHasBeenNotified;
     }
 }

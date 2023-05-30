@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
-import at.fhv.domain.models.StudentAssignment;
-import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
 
 @Service
@@ -26,25 +24,21 @@ public class CheckNotHandedInAssingments implements JavaDelegate {
     @Autowired
     private IStudentRepository studentRepository;
 
-    @Autowired
-    private IAssignmentRepository assignmentRepository;
-
     @Override
     @Transactional
-    public void execute(DelegateExecution arg0) throws Exception {
-        LOGGER.info("checknothandedinassignment");
+    public void execute(DelegateExecution execution) throws Exception {
+
+        execution.setVariable("studentsNeedToBeNotified", false);
 
         List<Student> allStudents = studentRepository.getAll();
         for(Student student : allStudents) {
-            for(Assignment assignment2 : student.notYetHandedIntAssingments(Date.valueOf(LocalDate.now()), 3)) {
-                LOGGER.info(student.getName() + " " + assignment2.getAssignemtName());
+            for(Assignment notYetSubmittedAssignment : student.notYetHandedIntAssingments(Date.valueOf(LocalDate.now()), 3)) {
+                execution.setVariable("studentToBeNotified", student.getName());
+                execution.setVariable("assignmentToBeNotifiedAbout", notYetSubmittedAssignment.getAssignemtName());
+                execution.setVariable("studentsNeedToBeNotified", true);
+                return;
             }
-
-            List<StudentAssignment> assignments = student.getAssignments();
-
         }
-
-
     }
     
 }
