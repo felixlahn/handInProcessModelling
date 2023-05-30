@@ -66,4 +66,4 @@ gestartet werden.
 - felix: erinnerungsprozess
 - melek: unit test checkavailability class
 - felix & melek: unit tests & integration tests
-- felix: createstudent form reparieren
+- felix: createstudent form reparieren - done
