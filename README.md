@@ -63,7 +63,7 @@ gestartet werden.
 - Felix: 2. Cucumber scenario - done
 - vielleicht fällt einem von uns ein drittes scenario ein
 - pmd reparieren & installieren - done: neue Version von PMD installieren (von rc1 auf rc2)
-- felix: erinnerungsprozess
+- felix: erinnerungsprozess - done
 - melek: unit test checkavailability class
 - felix & melek: unit tests & integration tests
 - felix: createstudent form reparieren - done
