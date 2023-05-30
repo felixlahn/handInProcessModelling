@@ -66,7 +66,7 @@ public class Student {
         return assignments.stream()
             .filter(
                 assignment -> !assignment.isHandedIn()
-                && 0 < assignment.getAssignment().dueUntil().toLocalDate().compareTo(today.toLocalDate().plusDays(dueUntilDays)))
+                && assignment.getAssignment().dueUntil().toLocalDate().isBefore(today.toLocalDate().plusDays(dueUntilDays)))
             .map(StudentAssignment::getAssignment)
             .collect(Collectors.toList());
     }

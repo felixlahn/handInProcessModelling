@@ -18,19 +18,34 @@ public class CheckNotHandedInAssignmnentsTest {
     private final static Logger LOGGER = Logger.getLogger("CheckNotHandedInAssingmnetsTest");
 
     @Test
-    public void Test_calculate_Duration_for_notYetHandedIntAssingments_within_three_days() {
+    public void Test_get_assignment_within_three_days() {
         //setup
         Student felix = new Student("Felix");
-        LocalDate date = LocalDate.of(2023, 5, 13);
+        LocalDate date = LocalDate.of(2023, 5, 31);
         Assignment assignment = new Assignment("camunda model", Date.valueOf(date));
         felix.assignAssingment(assignment);
         
         //act
-        List<Assignment> result = felix.notYetHandedIntAssingments(Date.valueOf(LocalDate.of(2023, 1, 11)), 3);
-        LOGGER.info(result.toString());
+        List<Assignment> result = felix.notYetHandedIntAssingments(Date.valueOf(LocalDate.of(2023, 5, 30)), 3);
 
         //assert
         assertEquals("notYetHandedIntAssingments has not returned expected amount of elements", 1, result.size());
         assertTrue("notYetHandedIntAssingments has not returned expected elements", result.contains(assignment));
+    }
+
+    @Test
+    public void Test_get_no_assignment_when_is_not_urgent() {
+        //setup
+        Student felix = new Student("Felix");
+        LocalDate date = LocalDate.of(2023, 7, 20);
+        Assignment assignment = new Assignment("camunda model", Date.valueOf(date));
+        felix.assignAssingment(assignment);
+        
+        //act
+        List<Assignment> result = felix.notYetHandedIntAssingments(Date.valueOf(LocalDate.of(2023, 5, 30)), 3);
+
+        //assert
+        assertEquals("notYetHandedIntAssingments has not returned expected amount of elements", 0, result.size());
+        assertTrue("notYetHandedIntAssingments has not returned expected elements", !result.contains(assignment));
     }
 }
