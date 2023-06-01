@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 
@@ -14,8 +13,6 @@ import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
 
 public class CheckNotHandedInAssignmnentsTest {
-
-    private final static Logger LOGGER = Logger.getLogger("CheckNotHandedInAssingmnetsTest");
 
     @Test
     public void Test_get_assignment_within_three_days() {
