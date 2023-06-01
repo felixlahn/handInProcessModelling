@@ -60,11 +60,14 @@ gestartet werden.
 # Todo
 
 - Melek: 1. Cucumber scenario
-- Felix: 2. Cucumber scenario - done
+- ~~Felix: 2. Cucumber scenario~~
 - vielleicht fällt einem von uns ein drittes scenario ein
-- pmd reparieren & installieren - done: neue Version von PMD installieren (von rc1 auf rc2) -> <mark>pmd wird mit maven ausgeführt: `mvn pmd:pmd`</mark>
-- felix: erinnerungsprozess - done
-- melek: unit test checkavailability class
+- ~~pmd reparieren & installieren - done: neue Version von PMD installieren (von rc1 auf rc2) -> <mark>pmd wird mit maven ausgeführt: `mvn pmd:pmd`</mark>~~
+- ~~felix: erinnerungsprozess~~
+- melek: unit test checkavailability class - (ev. auslagern der Logik in Service-Layer und in checkavailability-class injecten, so könnte man bessere Tests machen)
 - melek: ist der benotungsprozess schon fertig?
 - felix & melek: unit tests & integration tests
-- felix: createstudent form reparieren - done
+- ~~felix: createstudent form reparieren~~
+- Load tests
+- Process measurement (min 3 KPIs)
+- CI/CD-Pipeline machen (ev. Github Actions?)
