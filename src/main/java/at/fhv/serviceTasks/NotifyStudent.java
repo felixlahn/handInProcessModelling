@@ -7,11 +7,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import at.fhv.domain.models.Assignment;
-import at.fhv.domain.models.Student;
-import at.fhv.domain.models.StudentAssignment;
-import at.fhv.domain.persistence.IAssignmentRepository;
-import at.fhv.domain.persistence.IStudentRepository;
+import at.fhv.service.IStudentService;
 
 @Service
 public class NotifyStudent implements JavaDelegate {
@@ -19,31 +15,15 @@ public class NotifyStudent implements JavaDelegate {
     private final static Logger LOGGER = Logger.getLogger("NotifyStudent");
 
     @Autowired
-    private IStudentRepository _studentRepository;
-
-    @Autowired
-    private IAssignmentRepository _assignmentRepository;
+    private IStudentService _studentService;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
         String studentName = execution.getVariable("studentToBeNotified").toString();
+        String assignmentName = execution.getVariable("assignmentToBeNotifiedAbout").toString();
 
-        Student student = _studentRepository.get(studentName);
-        Assignment assignment = _assignmentRepository.get(execution.getVariable("assignmentToBeNotifiedAbout").toString());
-
-        StudentAssignment assignmentInQuestion = null;
-        for(StudentAssignment studentAssignment : student.getAssignments()) {
-            if(studentAssignment.getAssignment().getAssignemtName().equals(assignment.getAssignemtName())) {
-                assignmentInQuestion = studentAssignment;
-            }
-        }
-
-        if(assignmentInQuestion == null || assignmentInQuestion.lateSubmissionHasBeenNotified()) return;
-
-        LOGGER.info("NOTIFICATION: student " + student.getName() + " hasent handed in assignment " + assignmentInQuestion.getAssignment().getAssignemtName());
-
-        assignmentInQuestion.notifyAboutLateSubmission();
+        _studentService.notifyAboutLateSubmission(studentName, assignmentName, "Submission needs to be done in a few days!");
     }
     
 }

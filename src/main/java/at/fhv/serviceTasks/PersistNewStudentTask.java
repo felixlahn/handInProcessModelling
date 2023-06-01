@@ -9,8 +9,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import at.fhv.domain.models.Student;
-import at.fhv.domain.persistence.IStudentRepository;
+import at.fhv.service.IStudentService;
 
 @Service
 public class PersistNewStudentTask implements JavaDelegate {
@@ -18,12 +17,12 @@ public class PersistNewStudentTask implements JavaDelegate {
     private final static Logger LOGGER = Logger.getLogger("PersistNewStudentTask");
 
     @Autowired
-    private IStudentRepository _studentRepository;
+    private IStudentService _studentService;
 
     @Override
     @Transactional
     public void execute(DelegateExecution execution) throws Exception {
-        _studentRepository.add(new Student(execution.getVariable("studentName").toString()));
+        _studentService.createStudent(execution.getVariable("studentName").toString());
         LOGGER.info("Added Student with Name " + execution.getVariable("studentName").toString());
     }
     

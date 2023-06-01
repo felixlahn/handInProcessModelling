@@ -12,15 +12,17 @@ import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
 import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
+import at.fhv.service.IAssignmentService;
+import at.fhv.service.IStudentService;
 
 @Service
 public class PersistNewAssignmentTask implements JavaDelegate {
 
     @Autowired
-    private IAssignmentRepository _assignmentRepository;
+    private IAssignmentService _assignmentService;
 
     @Autowired
-    private IStudentRepository _studentRepository;
+    private IStudentService _studentService;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
@@ -30,24 +32,16 @@ public class PersistNewAssignmentTask implements JavaDelegate {
         String assignmentDueMonth = execution.getVariable("assignmentDueMonth").toString();
         String assignmentDueDay = execution.getVariable("assignmentDueDay").toString();
         
-        Student student;
-        if(_studentRepository.get(assignmentAssignedToStudent) == null) return;
-        student = _studentRepository.get(assignmentAssignedToStudent);
+        Student student = _studentService.getStudent(assignmentAssignedToStudent);
 
-        System.out.println(assignmentDueYear);
-        System.out.println(assignmentDueMonth);
-        System.out.println(assignmentDueDay);
-        
-        Assignment assignment = new Assignment(assingmentName, Date.valueOf(LocalDate.of(
+        Assignment assignment = _assignmentService.createAssignment(
+            assingmentName,
+            Date.valueOf(LocalDate.of(
             Integer.parseInt(assignmentDueYear),
             Integer.parseInt(assignmentDueMonth),
             Integer.parseInt(assignmentDueDay))));
             
-        student.assignAssingment(assignment);
-        
-        _assignmentRepository.add(assignment);
-        
-        System.out.println(student);
+        _studentService.assignAssignment(student.getName(), assignment);
     }
     
 }

@@ -11,22 +11,22 @@ import org.springframework.stereotype.Service;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.persistence.IAssignmentRepository;
+import at.fhv.service.IAssignmentService;
 
 @Service
 public class TodayBeforeSubmissiondate implements JavaDelegate {
 
     @Autowired
-    private IAssignmentRepository _assignmentRepository;
+    private IAssignmentService _assignmentService;
 
     private final static Logger LOGGER = Logger.getLogger("CompareTwoDates");
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
-        Assignment assignment = _assignmentRepository.get(execution.getVariable("submissionName").toString());
         execution.setVariable("submissionToLate", false);
 
-        if(assignment.dueUntil().before(Date.valueOf(LocalDate.now()))) {
+        if(_assignmentService.isExpired(execution.getVariable("submissionName").toString())) {
             execution.setVariable("submissionToLate", true);
         }
 

@@ -48,6 +48,13 @@
   <dependencies>
 
      <dependency>
+        <groupId>org.javatuples</groupId>
+        <artifactId>javatuples</artifactId>
+        <version>1.2</version>
+     </dependency>
+
+
+     <dependency>
         <groupId>io.cucumber</groupId>
         <artifactId>cucumber-core</artifactId>
         <version>1.2.6</version>
