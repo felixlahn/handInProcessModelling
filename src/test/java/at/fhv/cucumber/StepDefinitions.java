@@ -1,57 +1,33 @@
-package at.fhv.test.handInProcessModelling;
+package at.fhv.cucumber;
 
 import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
 
 import org.junit.Assert;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 
 import at.fhv.Application;
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
-import at.fhv.domain.persistence.IAssignmentRepository;
-import at.fhv.domain.persistence.IStudentRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
 
-class IsItFriday {
-    static String isItFriday(String today) {
-        return "Nope";
-    }
-}
-
-@SpringBootTest
-@ContextConfiguration(
-        classes = Application.class,
-        loader = SpringBootContextLoader.class)
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources")
+// @ContextConfiguration(
+//         classes = Application.class,
+//         loader = SpringBootContextLoader.class)
 public class StepDefinitions {
-    private String today;
-    private String actualAnswer;
 
     private Assignment _assignment;
     private Student _student;
-
-    @Given("today is Sunday")
-    public void today_is_Sunday() {
-        today = "Sunday";
-    }
-
-    @When("I ask whether it's Friday yet")
-    public void i_ask_whether_it_s_Friday_yet() {
-        actualAnswer = IsItFriday.isItFriday(today);
-    }
-
-    @Then("I should be told {string}")
-    public void i_should_be_told(String expectedAnswer) {
-        Assert.assertEquals(expectedAnswer, actualAnswer);
-    }
 
     ////////////
 

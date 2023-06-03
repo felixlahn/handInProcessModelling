@@ -21,7 +21,6 @@ import at.fhv.service.IStudentService;
 public class StudentService implements IStudentService {
 
     private final static Logger LOGGER = Logger.getLogger("StudentService");
-
     
     @Autowired
     private IStudentRepository _studentRepository;

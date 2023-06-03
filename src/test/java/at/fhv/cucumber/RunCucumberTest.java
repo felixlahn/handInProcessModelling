@@ -1,4 +1,4 @@
-package at.fhv.test.handInProcessModelling;
+package at.fhv.cucumber;
 
 import org.junit.runner.RunWith;
 import io.cucumber.junit.Cucumber;
@@ -8,4 +8,5 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(plugin = {"pretty"}, features = "src/test/resources/")
 // @CucumberOptions(plugin = {"pretty"})
 public class RunCucumberTest {
+    
 }
