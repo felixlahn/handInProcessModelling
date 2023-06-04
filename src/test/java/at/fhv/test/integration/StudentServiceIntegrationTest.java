@@ -5,20 +5,23 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import at.fhv.domain.models.Student;
 import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.IStudentService;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+@SpringBootTest(
+    properties = {
+        "camunda.bpm.generate-unique-process-engine-name=true",
+        "camunda.bpm.generate-unique-process-application-name=true",
+        "spring.datasource.generate-unique-name=true",
+      }
+)
 public class StudentServiceIntegrationTest {
     
     @Autowired

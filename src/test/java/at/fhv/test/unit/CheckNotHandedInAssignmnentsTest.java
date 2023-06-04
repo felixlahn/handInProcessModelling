@@ -8,15 +8,18 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
 
-@SpringBootTest
-// @RunWith(SpringRunner.class)
+@SpringBootTest(
+    properties = {
+        "camunda.bpm.generate-unique-process-engine-name=true",
+        "camunda.bpm.generate-unique-process-application-name=true",
+        "spring.datasource.generate-unique-name=true",
+      }
+)
 public class CheckNotHandedInAssignmnentsTest {
 
     @Test
