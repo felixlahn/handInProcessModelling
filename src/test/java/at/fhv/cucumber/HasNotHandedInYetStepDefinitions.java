@@ -17,7 +17,7 @@ import io.cucumber.java.en.When;
         "spring.datasource.generate-unique-name=true",
       }
 )
-@CucumberContextConfiguration
+
 @ContextConfiguration(classes = TestConfiguration.class)
 public class HasNotHandedInYetStepDefinitions {
 
