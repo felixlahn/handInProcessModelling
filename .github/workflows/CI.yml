@@ -18,8 +18,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '19'
-        distribution: 'temurin'
-        cache: oracle
+        distribution: 'oracle'
+        cache: maven
 
     - name: Execute Tests
       run: mvn test
