@@ -1,10 +1,16 @@
 package at.fhv.cucumber;
 
+import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
+
+import org.camunda.bpm.engine.ProcessEngine;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,6 +26,19 @@ import io.cucumber.java.en.When;
 
 @ContextConfiguration(classes = TestConfiguration.class)
 public class HasNotHandedInYetStepDefinitions {
+
+    @Autowired
+    ProcessEngine processEngine;  
+
+    @Before
+    public void setUp() {
+        init(this.processEngine);
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("Stopping a hand in scenario");
+    }
 
     @Given("there is an assingment assigend to the student")
     public void there_is_an_assingment_assigend_to_the_student() {

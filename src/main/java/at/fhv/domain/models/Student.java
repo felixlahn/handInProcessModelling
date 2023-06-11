@@ -49,7 +49,6 @@ public class Student {
     }
 
     public void hasHandedIn(Assignment assignment, File submission) {
-        System.out.println("to hand in: " + assignment.getAssignemtName());
         for (StudentAssignment studentAssignment : assignments) {
             if(studentAssignment.getAssignment().getAssignemtName().equals(assignment.getAssignemtName())) {
                 studentAssignment.hasBeenHandedIn(submission);

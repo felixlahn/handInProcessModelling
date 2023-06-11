@@ -1,6 +1,5 @@
 package at.fhv;
 
-
 import javax.annotation.PostConstruct;
 
 import org.apache.catalina.webresources.TomcatURLStreamHandlerFactory;
@@ -29,15 +28,18 @@ public class Application {
     // enable metric reporting
     ProcessEngineConfigurationImpl processEngineConfiguration = (ProcessEngineConfigurationImpl) processEngine
         .getProcessEngineConfiguration();
-    processEngineConfiguration.setDbMetricsReporterActivate(true);
-    processEngineConfiguration.getDbMetricsReporter().setReporterId("REPORTER");
+    processEngineConfiguration.setDbMetricsReporterActivate(false);
+    // processEngineConfiguration.getDbMetricsReporter().setReporterId("REPORTER");
 
     ClassLoader classLoader = Application.class.getClassLoader();
 
     if (processEngine.getIdentityService().createUserQuery().list().isEmpty()) {
       processEngine.getRepositoryService()
           .createDeployment()
-          .addInputStream("my_process.bpmn", classLoader.getResourceAsStream("my_process.bpmn"))
+          .addInputStream("abgabe.bpmn", classLoader.getResourceAsStream("abgabe.bpmn"))
+          .addInputStream("abgabeerinnerung.bpmn", classLoader.getResourceAsStream("abgabeerinnerung.bpmn"))
+          .addInputStream("createAssignment.bpmn", classLoader.getResourceAsStream("createAssignment.bpmn"))
+          .addInputStream("createStudent.bpmn", classLoader.getResourceAsStream("createStudent.bpmn"))
           .deploy();
     }
   }

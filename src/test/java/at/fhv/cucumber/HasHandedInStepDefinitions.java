@@ -1,17 +1,23 @@
 package at.fhv.cucumber;
 
+import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
+
 import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import org.camunda.bpm.engine.ProcessEngine;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -27,6 +33,19 @@ import io.cucumber.java.en.When;
 
 @ContextConfiguration(classes = TestConfiguration.class)
 public class HasHandedInStepDefinitions {
+
+    @Autowired
+    ProcessEngine processEngine;  
+
+    @Before
+    public void setUp() {
+        init(this.processEngine);
+    }
+
+    @After
+    public void tearDown() {
+        System.out.println("Stopping a hand in scenario");
+    }
 
     private Assignment _assignment;
     private Student _student;
