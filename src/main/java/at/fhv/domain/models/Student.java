@@ -15,17 +15,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = { CascadeType.ALL })
     private List<StudentAssignment> assignments;
 
-    private Student() {}
+    private Student() {
+    }
 
     public Student(String name) {
         this.name = name;
@@ -50,7 +51,7 @@ public class Student {
 
     public void hasHandedIn(Assignment assignment, File submission) {
         for (StudentAssignment studentAssignment : assignments) {
-            if(studentAssignment.getAssignment().getAssignemtName().equals(assignment.getAssignemtName())) {
+            if (studentAssignment.getAssignment().getAssignemtName().equals(assignment.getAssignemtName())) {
                 studentAssignment.hasBeenHandedIn(submission);
                 return;
             }
@@ -63,10 +64,14 @@ public class Student {
 
     public List<Assignment> notYetHandedIntAssingments(Date today, long dueUntilDays) {
         return assignments.stream()
-            .filter(
-                assignment -> !assignment.isHandedIn()
-                && assignment.getAssignment().dueUntil().toLocalDate().isBefore(today.toLocalDate().plusDays(dueUntilDays)))
-            .map(StudentAssignment::getAssignment)
-            .collect(Collectors.toList());
+                .filter(
+                        assignment -> !assignment.isHandedIn()
+                                && assignment.getAssignment().dueUntil().toLocalDate()
+                                        .isBefore(today.toLocalDate().plusDays(dueUntilDays)))
+                .map(StudentAssignment::getAssignment)
+                .collect(Collectors.toList());
+    }
+
+    public void hasBeenHandedIn(Assignment assignment, File submission) {
     }
 }

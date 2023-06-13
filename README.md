@@ -8,13 +8,13 @@ A template project used to quickstart a Camunda BPMN project
 
 As the development environment VS Code with the following plugins is the recommende IDE:
 
-* redhat.java
-* alexkrechik.cucumberautocomplete
+- redhat.java
+- alexkrechik.cucumberautocomplete
 
 For the development at least the following components need to be installed to run and develop the example:
 
-* Java 11
-* Maven
+- Java 11
+- Maven
 
 For the development of BPMN and DMN diagrams the [Camunda Modeler](https://camunda.com/de/download/modeler/) has to be used.
 
@@ -39,7 +39,8 @@ mvn test
 ```
 
 ### Camunda test documentation
-* Assertion: https://github.com/camunda/camunda-bpm-assert/blob/master/docs/User_Guide_BPMN.md
+
+- Assertion: https://github.com/camunda/camunda-bpm-assert/blob/master/docs/User_Guide_BPMN.md
 
 ### Run checkstyle
 
@@ -59,14 +60,14 @@ gestartet werden.
 
 # Todo
 
-- Melek: 1. Cucumber scenario
+- ~~Melek: 1. Cucumber scenario~~
 - ~~Felix: 2. Cucumber scenario~~
 - vielleicht fällt einem von uns ein drittes scenario ein
 - ~~pmd reparieren & installieren - done: neue Version von PMD installieren (von rc1 auf rc2) -> <mark>pmd wird mit maven ausgeführt: `mvn pmd:pmd`</mark>~~
 - ~~felix: erinnerungsprozess~~
-- melek: unit test checkavailability class - (ev. auslagern der Logik in Service-Layer und in checkavailability-class injecten, so könnte man bessere Tests machen)
-- melek: ist der benotungsprozess schon fertig?
-- felix & melek: unit tests & integration tests
+- ~~melek: unit test checkavailability class - (ev. auslagern der Logik in Service-Layer und in checkavailability-class injecten, so könnte man bessere Tests machen)~~
+- ~~melek: ist der benotungsprozess schon fertig?~~
+- ~~felix & melek: unit tests & integration tests~~
 - ~~felix: createstudent form reparieren~~
 - Load tests
 - Process measurement (min 3 KPIs)

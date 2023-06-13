@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_063iy48" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <decision id="Decision_03jcw7f" name="Gradingsystem">
+    <decisionTable id="DecisionTable_1fkjktb">
+      <input id="Input_1" label="Points" biodi:width="192">
+        <inputExpression id="InputExpression_1" typeRef="number">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Grade" typeRef="string" />
+      <rule id="DecisionRule_028g781">
+        <inputEntry id="UnaryTests_0fow4b6">
+          <text>100 ≤ x ≥ 87,5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1vdb8iz">
+          <text>Excellent</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ig6yvn">
+        <inputEntry id="UnaryTests_1xdb9zr">
+          <text>87,5 &gt; x ≥ 75</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1l57qeb">
+          <text>Good</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_02bkv6l">
+        <inputEntry id="UnaryTests_1iobv2t">
+          <text>75 &gt; x ≥ 62,5</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sv1ghe">
+          <text> Satisfactory</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0i2lpdw">
+        <inputEntry id="UnaryTests_1oz94wy">
+          <text>62,5 &gt; x ≥ 50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wa3m94">
+          <text>Sufficient</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_09usiot">
+        <inputEntry id="UnaryTests_1no8a34">
+          <text>x &lt; 50</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15hk71q">
+          <text>Unsatisfactory</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_03jcw7f">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

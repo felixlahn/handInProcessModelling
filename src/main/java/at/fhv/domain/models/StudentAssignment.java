@@ -11,26 +11,28 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class StudentAssignment {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @ManyToOne
     private Assignment assignment;
     private boolean handedIn;
     private boolean lateSubmissionHasBeenNotified;
-    private Grade grade;
 
     @Lob
     private File submission;
 
-    private StudentAssignment() { }
+    private String grade;
+
+    private StudentAssignment() {
+    }
 
     public StudentAssignment(Assignment assignment) {
         this.assignment = assignment;
         handedIn = false;
-        grade = Grade.NOT_GRADED_YET;
+        grade = "NOT_GRADED_YET";
         lateSubmissionHasBeenNotified = false;
     }
 
@@ -42,7 +44,7 @@ public class StudentAssignment {
         this.submission = submission;
     }
 
-    public Grade getGrade() {
+    public String getGrade() {
         return this.grade;
     }
 
@@ -60,24 +62,8 @@ public class StudentAssignment {
         System.out.println("handed in");
     }
 
-    public void excellent() {
-        this.grade = Grade.EXCELLENT;
-    }
-
-    public void good() {
-        this.grade = Grade.GOOD;
-    }
-
-    public void satisfactory() {
-        this.grade = Grade.SATISFACTORY;
-    }
-
-    public void sufficient() {
-        this.grade = Grade.SUFFICIENT;
-    }
-
-    public void unsatisfactory() {
-        this.grade = Grade.UNSATISFACTORY;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public void notifyAboutLateSubmission() {
@@ -86,5 +72,9 @@ public class StudentAssignment {
 
     public boolean lateSubmissionHasBeenNotified() {
         return lateSubmissionHasBeenNotified;
+    }
+
+    public Object getStudent() {
+        return null;
     }
 }

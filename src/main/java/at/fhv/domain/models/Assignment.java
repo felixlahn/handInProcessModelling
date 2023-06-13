@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Assignment {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
@@ -19,7 +19,8 @@ public class Assignment {
 
     private Date dueUnitl;
 
-    private Assignment() {}
+    private Assignment() {
+    }
 
     public Assignment(String name, Date dueUnit) {
         this.dueUnitl = dueUnit;
@@ -42,5 +43,12 @@ public class Assignment {
         this.assignmentName = assignmentName;
     }
 
+    public Object getAssignmentName() {
+        return null;
+    }
+
+    public String getName() {
+        return null;
+    }
 
 }
