@@ -15,6 +15,7 @@ spring:
     password: 
     driverClassName: org.h2.Driver
   jpa:
+    open-in-view: false
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
     hibernate.ddl-auto: create
