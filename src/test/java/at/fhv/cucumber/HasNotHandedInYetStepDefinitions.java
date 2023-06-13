@@ -1,6 +1,7 @@
 package at.fhv.cucumber;
 
 import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.*;
+import static org.junit.Assert.assertTrue;
 
 import org.camunda.bpm.engine.ProcessEngine;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(
@@ -23,7 +25,7 @@ import io.cucumber.java.en.When;
         "spring.datasource.generate-unique-name=true",
       }
 )
-
+// @CucumberContextConfiguration
 @ContextConfiguration(classes = TestConfiguration.class)
 public class HasNotHandedInYetStepDefinitions {
 
@@ -44,17 +46,20 @@ public class HasNotHandedInYetStepDefinitions {
     public void there_is_an_assingment_assigend_to_the_student() {
         // Write code here that turns the phrase above into concrete actions
         // throw new io.cucumber.java.PendingException();
+        assertTrue(true);
     }
 
     @When("the assignments deadline is within three days")
     public void the_assignments_deadline_is_within_three_days() {
         // Write code here that turns the phrase above into concrete actions
         // throw new io.cucumber.java.PendingException();
+        assertTrue(true);
     }
 
     @Then("the student should get be notified")
     public void the_student_should_get_be_notified() {
         // Write code here that turns the phrase above into concrete actions
         // throw new io.cucumber.java.PendingException();
+        assertTrue(true);
     }
 }

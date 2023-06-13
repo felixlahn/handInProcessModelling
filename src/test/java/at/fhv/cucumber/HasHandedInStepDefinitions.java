@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import org.camunda.bpm.engine.ProcessEngine;
+import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ import io.cucumber.java.en.When;
         "spring.datasource.generate-unique-name=true",
       }
 )
-
+@CucumberContextConfiguration
 @ContextConfiguration(classes = TestConfiguration.class)
 public class HasHandedInStepDefinitions {
 
