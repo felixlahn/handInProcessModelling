@@ -17,15 +17,12 @@ import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.IStudentService;
 
 @DirtiesContext
-@SpringBootTest(
-    properties = {
+@SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
         "camunda.bpm.generate-unique-process-application-name=true",
-        "spring.datasource.generate-unique-name=true",
-      }
-)
+        "spring.datasource.generate-unique-name=true", })
 public class StudentServiceIntegrationTest {
-    
+
     @Autowired
     private IStudentService _studentService;
 
@@ -37,14 +34,14 @@ public class StudentServiceIntegrationTest {
 
     @Test
     public void test_createStudent() {
-        //given
+        // given
         String studentName = "Felix Lahnsteiner";
         ArgumentCaptor<Student> captor = ArgumentCaptor.forClass(Student.class);
 
-        //when
+        // when
         Student created = _studentService.createStudent(studentName);
 
-        //then
+        // then
         verify(_studentRepository, times(1)).add(captor.capture());
 
         Student persisted = captor.getValue();

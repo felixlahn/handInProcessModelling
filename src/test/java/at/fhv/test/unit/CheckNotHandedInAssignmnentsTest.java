@@ -9,47 +9,47 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
 
-@SpringBootTest(
-    properties = {
+@DirtiesContext
+@SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
         "camunda.bpm.generate-unique-process-application-name=true",
         "spring.datasource.generate-unique-name=true",
-      }
-)
+})
 public class CheckNotHandedInAssignmnentsTest {
 
     @Test
     public void Test_get_assignment_within_three_days() {
-        //setup
+        // setup
         Student felix = new Student("Felix");
         LocalDate date = LocalDate.of(2023, 5, 31);
         Assignment assignment = new Assignment("camunda model", Date.valueOf(date));
         felix.assignAssingment(assignment);
-        
-        //act
+
+        // act
         List<Assignment> result = felix.notYetHandedIntAssingments(Date.valueOf(LocalDate.of(2023, 5, 30)), 3);
 
-        //assert
+        // assert
         assertEquals("notYetHandedIntAssingments has not returned expected amount of elements", 1, result.size());
         assertTrue("notYetHandedIntAssingments has not returned expected elements", result.contains(assignment));
     }
 
     @Test
     public void Test_get_no_assignment_when_is_not_urgent() {
-        //setup
+        // setup
         Student felix = new Student("Felix");
         LocalDate date = LocalDate.of(2023, 7, 20);
         Assignment assignment = new Assignment("camunda model", Date.valueOf(date));
         felix.assignAssingment(assignment);
-        
-        //act
+
+        // act
         List<Assignment> result = felix.notYetHandedIntAssingments(Date.valueOf(LocalDate.of(2023, 5, 30)), 3);
 
-        //assert
+        // assert
         assertEquals("notYetHandedIntAssingments has not returned expected amount of elements", 0, result.size());
         assertTrue("notYetHandedIntAssingments has not returned expected elements", !result.contains(assignment));
     }

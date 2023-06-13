@@ -2,9 +2,17 @@ package at.fhv.test.integration;
 
 import at.fhv.domain.models.Grade;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import static org.junit.Assert.assertEquals;
 
+@SpringBootTest(properties = {
+        "camunda.bpm.generate-unique-process-engine-name=true",
+        "camunda.bpm.generate-unique-process-application-name=true",
+        "spring.datasource.generate-unique-name=true",
+})
+@DirtiesContext
 public class GradeIntegrationTest {
 
     @Test

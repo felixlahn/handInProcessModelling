@@ -13,17 +13,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 @DirtiesContext
-@SpringBootTest(
-    properties = {
+@SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
         "camunda.bpm.generate-unique-process-application-name=true",
         "spring.datasource.generate-unique-name=true",
-      }
-)
+})
 public class TestProccessesAvailable {
-    
+
     @Autowired
-    ProcessEngine processEngine;  
+    ProcessEngine processEngine;
 
     @Autowired
     RuntimeService runtimeService;
@@ -35,8 +33,8 @@ public class TestProccessesAvailable {
 
     @Test
     public void test_start_createStudentProcess() {
-        ProcessInstance process = this.runtimeService.startProcessInstanceByKey("createStudentProcess", 
-        withVariables("studentName", "Felix Lahnsteiner"));
+        ProcessInstance process = this.runtimeService.startProcessInstanceByKey("createStudentProcess",
+                withVariables("studentName", "Felix Lahnsteiner"));
         assertThat(process).isNotNull();
         assertThat(process).isStarted();
     }

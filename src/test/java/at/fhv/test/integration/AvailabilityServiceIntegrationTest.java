@@ -23,7 +23,11 @@ import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.impl.AvailabilityService;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = {
+        "camunda.bpm.generate-unique-process-engine-name=true",
+        "camunda.bpm.generate-unique-process-application-name=true",
+        "spring.datasource.generate-unique-name=true",
+})
 public class AvailabilityServiceIntegrationTest {
 
     private final static Logger LOGGER = Logger.getLogger("CheckAvailabilityTask");

@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
@@ -20,6 +22,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
+@DirtiesContext
+@SpringBootTest
 @RunWith(MockitoJUnitRunner.class)
 public class CheckAvailabilityTest {
 

@@ -11,11 +11,13 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.annotation.DirtiesContext;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.service.IAssignmentService;
 
+@DirtiesContext
 @SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
         "camunda.bpm.generate-unique-process-application-name=true",

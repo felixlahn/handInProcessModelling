@@ -6,11 +6,15 @@ import java.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Grade;
 import at.fhv.domain.models.Student;
 
+@DirtiesContext
+@SpringBootTest
 public class CheckAvailabilityStepDefinitionsTest {
 
     private Assignment assignment;
