@@ -18,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
         "spring.datasource.generate-unique-name=true",
       }
 )
-public class CreateStudentProcessTest {
+public class TestProccessesAvailable {
     
     @Autowired
     ProcessEngine processEngine;  
@@ -32,11 +32,24 @@ public class CreateStudentProcessTest {
     }
 
     @Test
-    public void make_sure_subprocess_gets_integrated(){
+    public void test_start_createStudentProcess() {
         ProcessInstance process = this.runtimeService.startProcessInstanceByKey("createStudentProcess", 
         withVariables("studentName", "Felix Lahnsteiner"));
         assertThat(process).isNotNull();
         assertThat(process).isStarted();
+    }
 
+    @Test
+    public void test_start_abgabeerinnerung() {
+        ProcessInstance process = this.runtimeService.startProcessInstanceByKey("submissionReminder");
+        assertThat(process).isNotNull();
+        assertThat(process).isStarted();
+    }
+
+    @Test
+    public void test_start_abgabe() {
+        ProcessInstance process = this.runtimeService.startProcessInstanceByKey("abgabeProcess");
+        assertThat(process).isNotNull();
+        assertThat(process).isStarted();
     }
 }

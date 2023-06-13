@@ -40,6 +40,7 @@ public class Application {
           .addInputStream("abgabeerinnerung.bpmn", classLoader.getResourceAsStream("abgabeerinnerung.bpmn"))
           .addInputStream("createAssignment.bpmn", classLoader.getResourceAsStream("createAssignment.bpmn"))
           .addInputStream("createStudent.bpmn", classLoader.getResourceAsStream("createStudent.bpmn"))
+          .addInputStream("abgabeerinnerung.bpmn", classLoader.getResourceAsStream("abgabeerinnerung.bpmn"))
           .deploy();
     }
   }
