@@ -13,7 +13,9 @@ jobs:
     uses: ./.github/workflows/build_test.yml
     with:
       project_name: HandInSubmission
+
   docker_build_push:
+    needs: build_test
     uses: ./.github/workflows/docker_build_push.yml
     with:
       project_name: HandInSubmission
