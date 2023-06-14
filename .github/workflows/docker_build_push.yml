@@ -16,8 +16,6 @@ jobs:
     build_push:
         name: Build and push
         runs-on: ubuntu-latest
-        permissions:
-            packages: write
         
         steps:
         - uses: ASzc/change-string-case-action@v2

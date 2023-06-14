@@ -24,6 +24,8 @@ jobs:
       push_image: false
 
   docker_build_push:
+    permissions:
+      packages: write
     name: docker build & push
     needs: [build_test, docker_build]
     if: github.event_name == 'release'
