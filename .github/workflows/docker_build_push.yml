@@ -31,4 +31,4 @@ jobs:
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ghcr.io/${{ steps.lowercase.outputs.lowercase }}:latest
+            tags: ghcr.io/${{ github.repository }}/${{ steps.lowercase.outputs.lowercase }}:latest
