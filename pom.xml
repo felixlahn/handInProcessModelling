@@ -17,6 +17,7 @@
     <maven.compiler.target>19</maven.compiler.target>
     <cucumber.version>7.9.0</cucumber.version>
    <heroku.app.name>fhv-bpmn-template</heroku.app.name>
+   <exec.mainClass>at.fhv.Application</exec.mainClass>
   </properties>
 
   <dependencyManagement>
@@ -151,11 +152,62 @@
       </pluginManagement>
 
     <plugins>
+
+      <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <!-- <finalName>appname</finalName> -->
+                <appendAssemblyId>false</appendAssemblyId>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <mainClass>at.fhv.Application</mainClass>
+                    </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                        <mainClass>at.fhv.Application</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+    </plugin>
+
+
+
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>3.0.6</version>
-        <!-- <version>2.7.3</version> -->
+        <version>3.1.0</version>
+        <configuration>
+          <layout>ZIP</layout>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
          <groupId>org.apache.maven.plugins</groupId>
