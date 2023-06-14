@@ -14,7 +14,14 @@ jobs:
     with:
       project_name: HandInSubmission
 
+  docker_build:
+    uses: ./.github/workflows/docker_build_push.yml
+    with:
+      project_name: HandInSubmission
+      push_image: false
+
   docker_build_push:
+    if: ${{ startsWith(github.ref, 'release/') }}
     needs: build_test
     uses: ./.github/workflows/docker_build_push.yml
     with:
