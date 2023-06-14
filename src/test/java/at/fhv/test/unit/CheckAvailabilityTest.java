@@ -15,11 +15,8 @@ import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.serviceTasks.CheckAvailability;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @DirtiesContext
