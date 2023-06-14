@@ -13,7 +13,10 @@ on:
 jobs:
     build_push:
         name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: ${{ inputs.push_image }}
-          tags: ${{ inputs.project_name }}:latest
+        runs-on: ubuntu-latest
+        
+        steps:
+        - uses: docker/build-push-action@v4
+          with:
+            push: ${{ inputs.push_image }}
+            tags: ${{ inputs.project_name }}:latest
