@@ -17,9 +17,14 @@ jobs:
         
         steps:
         - uses: ASzc/change-string-case-action@v2
-          id: lowercase
+          id: lowercase_tag
           with:
             string: ${{ inputs.project_name }}
+        
+        - uses: ASzc/change-string-case-action@v2
+          id: lowercase_repository
+          with:
+            string: ${{ github.repository }}
 
         - name: Log in to the Container registry
           uses: docker/login-action@v2
@@ -31,4 +36,4 @@ jobs:
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ghcr.io/${{ github.repository }}/${{ steps.lowercase.outputs.lowercase }}:latest
+            tags: ghcr.io/${{ steps.lowercase_repository.outputs.lowercase }}/${{ steps.lowercase_tag.outputs.lowercase }}:latest
