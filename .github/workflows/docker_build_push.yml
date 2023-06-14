@@ -20,11 +20,6 @@ jobs:
           id: lowercase_tag
           with:
             string: ${{ inputs.project_name }}
-        
-        - uses: ASzc/change-string-case-action@v2
-          id: lowercase_repository
-          with:
-            string: ${{ github.GITHUB_USERNAME }}
 
         - name: Log in to the Container registry
           uses: docker/login-action@v2
@@ -36,4 +31,4 @@ jobs:
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ghcr.io/${{ steps.lowercase_repository.outputs.lowercase }}/${{ steps.lowercase_tag.outputs.lowercase }}:latest
+            tags: ghcr.io/felixlahn/${{ steps.lowercase_tag.outputs.lowercase }}:latest
