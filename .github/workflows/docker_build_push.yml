@@ -19,4 +19,4 @@ jobs:
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ${{ inputs.project_name }}:latest
+            tags: ${{ inputs.project_name.lowercase }}:latest
