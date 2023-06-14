@@ -10,6 +10,6 @@ on:
 
 jobs:
   build_test:
-    uses: ./.github/workflows/templates/build_test.yml
+    uses: ./.github/workflows/build_test.yml
     with:
       project_name: HandInSubmission
