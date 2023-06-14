@@ -29,3 +29,4 @@ jobs:
 
       - name: Build with Maven
         run: mvn -ntp -DskipTests -B package --file pom.xml
+        
