@@ -57,6 +57,6 @@ public class AssignmentServiceTests {
 
     @Test
     public void testtest() {
-        // assertTrue(false);
+        assertTrue(false);
     }
 }
