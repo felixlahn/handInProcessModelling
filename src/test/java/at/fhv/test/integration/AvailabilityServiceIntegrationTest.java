@@ -1,6 +1,5 @@
 package at.fhv.test.integration;
 
-import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import at.fhv.domain.models.Assignment;
@@ -23,6 +23,7 @@ import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.impl.AvailabilityService;
 
 @RunWith(SpringRunner.class)
+@DirtiesContext
 @SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
         "camunda.bpm.generate-unique-process-application-name=true",
