@@ -29,11 +29,11 @@ jobs:
         - name: Log in to the Container registry
           uses: docker/login-action@v2
           with:
-            registry: https://ghcr.io/${{ github.repository }}
+            registry: https://ghcr.io
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
         
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ${{ steps.lowercase_tag.outputs.lowercase }}:latest
+            tags: ghcr.io/felixlahn/${{ steps.lowercase_tag.outputs.lowercase }}:latest
