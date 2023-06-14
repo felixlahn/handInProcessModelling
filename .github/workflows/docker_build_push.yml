@@ -16,7 +16,11 @@ jobs:
         runs-on: ubuntu-latest
         
         steps:
+        - uses: ASzc/change-string-case-action@v2
+          id: lowercase
+          with:
+            string: ${{ inputs.project_name }}
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ${{ inputs.project_name.lowercase }}:latest
+            tags: ${{ steps.lowercase.outputs.lowercase }}:latest
