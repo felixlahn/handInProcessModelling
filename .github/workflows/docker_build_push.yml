@@ -24,16 +24,16 @@ jobs:
         - uses: ASzc/change-string-case-action@v2
           id: lowercase_repository
           with:
-            string: ${{ github.repository }}
+            string: ${{ github.GITHUB_USERNAME }}
 
         - name: Log in to the Container registry
           uses: docker/login-action@v2
           with:
-            registry: https://ghcr.io
+            registry: https://ghcr.io/${{ github.repository }}
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
         
         - uses: docker/build-push-action@v4
           with:
             push: ${{ inputs.push_image }}
-            tags: ghcr.io/${{ steps.lowercase_repository.outputs.lowercase }}/${{ steps.lowercase_tag.outputs.lowercase }}:latest
+            tags: ${{ steps.lowercase_tag.outputs.lowercase }}:latest
