@@ -3,10 +3,12 @@ name: Java CI with Maven
 on:
   push:
     branches:
-      - main
+      - main  
   pull_request:
     branches: 
       - main
+  release:
+    types: [created]
 
 jobs:
   build_test:
@@ -23,7 +25,7 @@ jobs:
 
   docker_build_push:
     name: docker build & push
-    if: ${{ contains(github.ref, 'refs/tags/release') }}
+    if: github.event_name == 'release'
     needs: build_test
     uses: ./.github/workflows/docker_build_push.yml
     with:
