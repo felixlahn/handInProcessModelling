@@ -25,8 +25,8 @@ jobs:
 
   docker_build_push:
     name: docker build & push
+    needs: [build_test, docker_build]
     if: github.event_name == 'release'
-    needs: build_test
     uses: ./.github/workflows/docker_build_push.yml
     with:
       project_name: HandInSubmission
