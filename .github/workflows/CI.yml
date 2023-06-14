@@ -11,5 +11,5 @@ on:
 jobs:
   build_test:
     uses: ./.github/workflows/templates/build_test.yml
-    whith:
+    with:
       project_name: HandInSubmission
