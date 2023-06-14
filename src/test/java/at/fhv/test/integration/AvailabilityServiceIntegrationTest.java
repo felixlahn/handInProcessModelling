@@ -22,7 +22,6 @@ import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.impl.AvailabilityService;
 
-@RunWith(SpringRunner.class)
 @DirtiesContext
 @SpringBootTest(properties = {
         "camunda.bpm.generate-unique-process-engine-name=true",
