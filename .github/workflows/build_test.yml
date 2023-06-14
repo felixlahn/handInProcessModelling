@@ -11,6 +11,7 @@ jobs:
     build_test:
       runs-on: ubuntu-latest
       name: build & test ${{ inputs.project_name }}
+      
       steps:
       - uses: actions/checkout@v3
 
@@ -21,10 +22,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Execute Tests
-        run: mvn test
+        run: mvn -ntp test
 
       - name: Static source code analysis
-        run: mvn pmd:pmd
+        run: mvn -ntp pmd:pmd
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -ntp -B package --file pom.xml
