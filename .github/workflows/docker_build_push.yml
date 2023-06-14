@@ -28,5 +28,5 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}
         - uses: docker/build-push-action@v4
           with:
-            push: ${{ inputs.push_image }}
+            push: ghcr.io/${{ inputs.push_image }}
             tags: ${{ steps.lowercase.outputs.lowercase }}:latest
