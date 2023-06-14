@@ -1,0 +1,19 @@
+name: docker build & push
+
+on:
+  workflow_call:
+    inputs:
+      push_image:
+        required: true
+        type: boolean
+      project_name:
+        required: true
+        type: string
+
+jobs:
+    build_push:
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: ${{ inputs.push_image }}
+          tags: ${{ inputs.project_name }}:latest
