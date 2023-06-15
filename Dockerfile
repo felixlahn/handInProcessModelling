@@ -2,7 +2,6 @@ FROM maven:3.8.7-eclipse-temurin-19 as build
 WORKDIR /workspace/app
 
 COPY . .
-COPY pom.xml .
 
 RUN mvn test -ntp
 RUN mvn install -ntp -DskipTests

@@ -14,27 +14,27 @@ env:
 
 jobs:
     build_push:
-        name: build & push
-        runs-on: ubuntu-latest
-        
-        steps:
-        - uses: actions/checkout@v3
-        
-        - name: Log in to the Container registry
-          uses: docker/login-action@v2
-          with:
-            registry: https://ghcr.io
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-        
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@v4
-          with:
-            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-        
-        - uses: docker/build-push-action@v4
-          with:
-            push: ${{ inputs.push_image }}
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+      name: build & push
+      runs-on: ubuntu-latest
+      
+      steps:
+      - uses: actions/checkout@v3
+      
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: https://ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+      
+      - uses: docker/build-push-action@v4
+        with:
+          push: ${{ inputs.push_image }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
