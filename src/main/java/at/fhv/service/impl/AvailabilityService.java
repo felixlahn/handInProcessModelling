@@ -1,7 +1,6 @@
 package at.fhv.service.impl;
 
 import java.io.File;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.transaction.Transactional;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
-import at.fhv.domain.models.StudentAssignment;
 import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.domain.persistence.IStudentRepository;
 
@@ -45,8 +43,6 @@ public class AvailabilityService {
         File submission = new File(filePath);
         student.hasHandedIn(assignment, submission);
 
-        List<StudentAssignment> assignments = student.getAssignments();
-
-        // Set output variables or perform other actions
+         // Set output variables or perform other actions
     }
 }

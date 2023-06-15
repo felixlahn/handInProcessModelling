@@ -1,7 +1,5 @@
 package at.fhv.serviceTasks;
 
-import java.util.logging.Logger;
-
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +9,6 @@ import at.fhv.service.IStudentService;
 
 @Service
 public class NotifyStudent implements JavaDelegate {
-
-    private final static Logger LOGGER = Logger.getLogger("NotifyStudent");
 
     @Autowired
     private IStudentService _studentService;

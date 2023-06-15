@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
-import at.fhv.domain.persistence.IAssignmentRepository;
-import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.IAssignmentService;
 import at.fhv.service.IStudentService;
 

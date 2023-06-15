@@ -1,7 +1,5 @@
 package at.fhv.serviceTasks;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -9,8 +7,6 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import at.fhv.domain.models.Assignment;
-import at.fhv.domain.persistence.IAssignmentRepository;
 import at.fhv.service.IAssignmentService;
 
 @Service

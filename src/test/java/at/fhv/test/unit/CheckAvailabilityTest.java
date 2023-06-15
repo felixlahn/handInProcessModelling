@@ -35,7 +35,7 @@ public class CheckAvailabilityTest {
 
     @Before
     public void setUp() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test

@@ -68,12 +68,15 @@ public class StudentService implements IStudentService {
 
     @Override
     public Optional<ImmutablePair<Student, Assignment>> getNextStudentWithNotYetSubmittedAssignment(int assignmentDueUntil) {
+
+        Optional<ImmutablePair<Student, Assignment>> foundStudent = Optional.empty();
+
         List<Student> allStudents = _studentRepository.getAll();
         for(Student student : allStudents) {
             for(Assignment notYetSubmittedAssignment : student.notYetHandedIntAssingments(Date.valueOf(LocalDate.now()), assignmentDueUntil)) {
-                return Optional.of(new ImmutablePair<Student, Assignment>(student, notYetSubmittedAssignment));
+                foundStudent = Optional.of(new ImmutablePair<Student, Assignment>(student, notYetSubmittedAssignment));
             }
         }
-        return Optional.empty();
+        return foundStudent;
     }
 }

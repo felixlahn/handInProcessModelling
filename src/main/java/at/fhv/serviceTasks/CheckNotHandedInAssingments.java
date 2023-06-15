@@ -1,10 +1,6 @@
 package at.fhv.serviceTasks;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import javax.transaction.Transactional;
 
@@ -16,13 +12,10 @@ import org.springframework.stereotype.Service;
 
 import at.fhv.domain.models.Assignment;
 import at.fhv.domain.models.Student;
-import at.fhv.domain.persistence.IStudentRepository;
 import at.fhv.service.IStudentService;
 
 @Service
 public class CheckNotHandedInAssingments implements JavaDelegate {
-
-    private final static Logger LOGGER = Logger.getLogger("CheckNotHandedInAssingmnets");
 
     @Autowired
     private IStudentService _studentService;

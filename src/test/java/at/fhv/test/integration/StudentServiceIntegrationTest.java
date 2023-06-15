@@ -47,5 +47,6 @@ public class StudentServiceIntegrationTest {
         Student persisted = captor.getValue();
 
         assertEquals(studentName, persisted.getName());
+        assertEquals(created.getName(), persisted.getName());
     }
 }
