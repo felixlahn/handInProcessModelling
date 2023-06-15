@@ -4,6 +4,10 @@ A template project used to quickstart a Camunda BPMN project
 
 ## Development
 
+### Git Workflow & CI/CD
+
+There is a Pipeline running on every push or Pull Request that happens on main. It tests and builds the project on a linux machine as well as tries to build a docker image. If there is a Release created on Github, the same Pipeline is run again, but there will also be put the docker image to ghcr.io.
+
 ### Environment
 
 As the development environment VS Code with the following plugins is the recommende IDE:
@@ -50,13 +54,23 @@ mvn site
 
 ### statische Codeanalyse
 
-Für die statische Codeanalyse kann [pmd](https://pmd.github.io/) verwendet werden. Ein grundlegendes Ruleset ist in `./ruleset/java/jpinpoint-rules.xml` abgelegt. Sofern pmd installiert ist, kann der Check mit
+statische Codeanalyse wird mit pmd gemacht, dafür ist ein plugin installiert. Es kann mit
 
 ```cmd
-pmd check -R .\rulesets\java\* -d .\src\ -r .\check.txt
+mvn pmd:pmd
 ```
 
 gestartet werden.
+
+### Load Tests
+
+Für Load Tests ist als Plugin Gatling angegeben, eine Recoreded Simulation ist in `at.fhv.RecordedSimulation`. Sofern die Applikation auf `localhost:8080` läuft, kann ein Load Test mit
+
+```cmd
+mvn gatling:test
+```
+
+gemacht werden.
 
 # Todo
 
@@ -69,6 +83,6 @@ gestartet werden.
 - ~~melek: ist der benotungsprozess schon fertig?~~
 - ~~felix & melek: unit tests & integration tests~~
 - ~~felix: createstudent form reparieren~~
-- Load tests
+- ~~Load tests~~
 - Process measurement (min 3 KPIs)
-- CI/CD-Pipeline machen (ev. Github Actions?)
+- ~~CI/CD-Pipeline machen (ev. Github Actions?)~~

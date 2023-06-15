@@ -5,7 +5,7 @@
       <bpmn:outgoing>Flow_1rx7zp2</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1rx7zp2" sourceRef="StartEvent_1" targetRef="createStudent" />
-    <bpmn:userTask id="createStudent" name="set Student Name" camunda:formRef="createStudentForm" camunda:formRefBinding="latest">
+    <bpmn:userTask id="createStudent" name="set Student Name" camunda:formRef="createStudentForm" camunda:formRefBinding="deployment">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="studentName" />
